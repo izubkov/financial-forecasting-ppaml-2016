@@ -1,5 +1,5 @@
-(defproject mlss2015 "0.1.0-SNAPSHOT"
-  :description "MLSS 2015 Probabilistic Programming Exercises"
+(defproject financial-forecasting "0.1.0-SNAPSHOT"
+  :description "Generative model for Financial Forecasting in Anglican"
   :url ""
   :license {:name " "GNU General Public License Version 3; Other commercial licenses available."
             :url "http://www.gnu.org/licenses/gpl.html"}
