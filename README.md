@@ -1,2 +1,2 @@
 # financial-predictions-ppaml-2016
-Generative model for Financial Prediction in Anglican
+Generative model for Financial Predictions in Anglican
