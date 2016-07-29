@@ -46,7 +46,7 @@
 ;; <=
 
 ;; @@
-  (def log-samples
+(def log-samples
   (repeatedly 10000 #(sample* (log-normal 1 0.5))))
 
 (plot/compose
@@ -76,8 +76,9 @@
 ;; <=
 
 ;; @@
-; TODO: take F(t-1) september for spike prop.
-(defm div-increase-distrib [Ft]                                  ; returns boolean
+(defm div-increase-distrib [Ft]
+  ; takes F(t-1) spike (for example, prev. september)
+  ; returns boolean
   (if (= (:spike Ft) 1) ; spike in september
       (sample (flip 0.9)) ; high prob. of increase
       (sample (flip 0.1)))) ; low prob.
@@ -100,8 +101,6 @@
 (with-primitive-procedures [log-normal]
   (defquery at-given-dt-Ft [Ft] ; this is "previous" Ft
     ; This is a model (simulator) for amount of dividents for next quarter
-
-    ; amount-to-increase-div-distrib ( div-increase-distrib )
 
       (let [addition ; TODO: get addition _value_
              (sample
