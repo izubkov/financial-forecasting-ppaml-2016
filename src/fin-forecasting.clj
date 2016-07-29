@@ -98,19 +98,18 @@
 ;; <=
 
 ;; @@
-(defquery at-given-dt-Ft [Ft] ; this is "previous" Ft
+(defquery at-given-dt-Ft [Ft]
   ; This is a model (simulator) for amount of dividents for next quarter
   (let [pifspike (sample (uniform-continuous 0. 1.)) ; we do not know a distrib.
         ; we learn it
         pifnospike (sample (uniform-continuous 0. 1.))]
-    (loop [currentquarter (first ...)
+    (loop [fi (first Ft) ; first quarter
            localrvswecareabout []]
       (let [addition-distrib
             (amount-to-increase-div-distrib (div-increase-boolean 
                                               Ft pifspike 
-                                              pifnospike))
-            ]
-        (observe (addition-distrib) .... )
+                                              pifnospike))]
+        (observe (addition-distrib) pifnospike pifspike)
         (recur (next ...) [])))
     {:pifspike pifspike
      :pifnospike pifnospike
@@ -128,19 +127,17 @@ Ft-data
 ;; @@
 ;(def Ft-data-0 (get Ft-data :'30-06-2013'))
 ;(def Ft-data-0 (get Ft-data :'30-09-2013'))
-(def Ft-data-0 (get Ft-data :'30-06-2015'))
+;(def Ft-data-0 (get Ft-data :'30-06-2015'))
 ;(def Ft-data-0 (get Ft-data :'30-09-2015'))
 
 (println Ft-data-0)
 
 (->> (doquery :smc
-  at-given-dt-Ft [Ft-data-0] ; feed previous frame (Ft) here
+  at-given-dt-Ft [Ft-data] ; feed previous frame (Ft) here
   :number-of-particles 100)
      (take 5000)
      stat/collect-results
-     (stat/empirical-mean)
-     ;(println (+ (:div Ft-data-0) ))
-     )
+     (stat/empirical-mean))
 
 ;; @@
 ;; ->
