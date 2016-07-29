@@ -76,6 +76,7 @@
 ;; <=
 
 ;; @@
+; TODO: model something
 (defm div-percent-distrib [Ft]
   (if 
     (if (> (:volume Ft) 0.5)
@@ -91,6 +92,7 @@
 ;; @@
 (with-primitive-procedures [log-normal]
   (defquery at-given-dt-Ft [Ft dt]
+    ; This is a model (simulator) for amount of dividents
     (let []
       (sample 
         (if dt
@@ -121,7 +123,7 @@
 ;;; {:stock-price 58.35, :volume 60551066, :div 0.5625, :net-income 0.35}
 ;; <-
 ;; =>
-;;; {"type":"html","content":"<span class='clj-double'>3.21774473082266E25</span>","value":"3.21774473082266E25"}
+;;; {"type":"html","content":"<span class='clj-double'>3.3135332101212883E25</span>","value":"3.3135332101212883E25"}
 ;; <=
 
 ;; @@
